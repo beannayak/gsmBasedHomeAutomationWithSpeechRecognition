@@ -1,0 +1,31 @@
+<GRAMMAR LANGID="409">
+       <DEFINE><ID NAME="device one on" VAL="101"/></DEFINE>
+       <RULE NAME="device one on" ID="device one on" TOPLEVEL="ACTIVE">
+               <P>device one on</P>
+       </RULE>
+	   
+	   <DEFINE><ID NAME="device one off" VAL="102"/></DEFINE>
+       <RULE NAME="device one off" ID="device one off" TOPLEVEL="ACTIVE">
+               <P>device one off</P>
+       </RULE>
+	   
+	   <DEFINE><ID NAME="device two on" VAL="103"/></DEFINE>
+       <RULE NAME="device two on" ID="device two on" TOPLEVEL="ACTIVE">
+               <P>device two on</P>
+       </RULE>
+	   
+	   <DEFINE><ID NAME="device two off" VAL="104"/></DEFINE>
+       <RULE NAME="device two off" ID="device two off" TOPLEVEL="ACTIVE">
+               <P>device two off</P>
+       </RULE>
+	   
+	   <DEFINE><ID NAME="device three on" VAL="105"/></DEFINE>
+       <RULE NAME="device three on" ID="device three on" TOPLEVEL="ACTIVE">
+               <P>device three on</P>
+       </RULE>
+	   
+	   <DEFINE><ID NAME="device three off" VAL="106"/></DEFINE>
+       <RULE NAME="device three off" ID="device three off" TOPLEVEL="ACTIVE">
+               <P>device three off</P>
+       </RULE>
+</GRAMMAR>

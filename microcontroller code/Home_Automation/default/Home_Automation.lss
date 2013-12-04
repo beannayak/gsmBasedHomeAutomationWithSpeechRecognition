@@ -1,0 +1,1939 @@
+
+Home_Automation.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000810  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000134  00800060  00000810  000008a4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  00800194  00800194  000009d8  2**0
+                  ALLOC
+  3 .debug_aranges 00000020  00000000  00000000  000009d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 00000120  00000000  00000000  000009f8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000de3  00000000  00000000  00000b18  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000278  00000000  00000000  000018fb  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000a78  00000000  00000000  00001b73  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000110  00000000  00000000  000025ec  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000213  00000000  00000000  000026fc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000041e  00000000  00000000  0000290f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 000000d8  00000000  00000000  00002d2d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 e5 01 	jmp	0x3ca	; 0x3ca <__vector_11>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	11 e0       	ldi	r17, 0x01	; 1
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 e1       	ldi	r30, 0x10	; 16
+  68:	f8 e0       	ldi	r31, 0x08	; 8
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a4 39       	cpi	r26, 0x94	; 148
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	11 e0       	ldi	r17, 0x01	; 1
+  78:	a4 e9       	ldi	r26, 0x94	; 148
+  7a:	b1 e0       	ldi	r27, 0x01	; 1
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a8 39       	cpi	r26, 0x98	; 152
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 3b 02 	call	0x476	; 0x476 <main>
+  8a:	0c 94 06 04 	jmp	0x80c	; 0x80c <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <initDelay>:
+void writeNibbleToLCD(int, int);
+unsigned char BV(unsigned char);
+void writeByteToLCD(int, int);
+
+void initDelay(){
+	TCCR0 = 0x02;
+  92:	82 e0       	ldi	r24, 0x02	; 2
+  94:	83 bf       	out	0x33, r24	; 51
+	TCNT0 = 212;
+  96:	84 ed       	ldi	r24, 0xD4	; 212
+  98:	82 bf       	out	0x32, r24	; 50
+	OCR0 = 0x00;
+  9a:	1c be       	out	0x3c, r1	; 60
+	TIMSK = 0x01;
+  9c:	81 e0       	ldi	r24, 0x01	; 1
+  9e:	89 bf       	out	0x39, r24	; 57
+
+	sei();
+  a0:	78 94       	sei
+}
+  a2:	08 95       	ret
+
+000000a4 <delay50us>:
+
+void delay50us(unsigned int delayedTime){
+  a4:	9c 01       	movw	r18, r24
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+  a6:	84 ed       	ldi	r24, 0xD4	; 212
+  a8:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+  aa:	10 92 95 01 	sts	0x0195, r1
+  ae:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+  b2:	80 91 94 01 	lds	r24, 0x0194
+  b6:	90 91 95 01 	lds	r25, 0x0195
+  ba:	82 17       	cp	r24, r18
+  bc:	93 07       	cpc	r25, r19
+  be:	c9 f7       	brne	.-14     	; 0xb2 <delay50us+0xe>
+			break;
+		}
+	}
+}
+  c0:	08 95       	ret
+
+000000c2 <waitForLCD>:
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+  c2:	84 ed       	ldi	r24, 0xD4	; 212
+  c4:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+  c6:	10 92 95 01 	sts	0x0195, r1
+  ca:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+  ce:	80 91 94 01 	lds	r24, 0x0194
+  d2:	90 91 95 01 	lds	r25, 0x0195
+  d6:	01 97       	sbiw	r24, 0x01	; 1
+  d8:	d1 f7       	brne	.-12     	; 0xce <waitForLCD+0xc>
+	}
+}
+
+void waitForLCD(){
+	delay50us(1);			//wait for lcd to write data;
+}
+  da:	08 95       	ret
+
+000000dc <writeNibbleToLCD>:
+	delay50us(250);
+	// **********************************************************
+}
+
+void writeNibbleToLCD(int selectedRegister, int nibble) {
+	LCD_OUT = BV(ENABLE);
+  dc:	20 e4       	ldi	r18, 0x40	; 64
+  de:	2b bb       	out	0x1b, r18	; 27
+
+	LCD_OUT |= nibble;
+  e0:	2b b3       	in	r18, 0x1b	; 27
+  e2:	26 2b       	or	r18, r22
+  e4:	2b bb       	out	0x1b, r18	; 27
+
+	if(selectedRegister == DATA_REGISTER) {
+  e6:	89 2b       	or	r24, r25
+  e8:	11 f4       	brne	.+4      	; 0xee <writeNibbleToLCD+0x12>
+		LCD_OUT |= BV(RS);
+  ea:	dc 9a       	sbi	0x1b, 4	; 27
+  ec:	01 c0       	rjmp	.+2      	; 0xf0 <writeNibbleToLCD+0x14>
+	} else {
+		LCD_OUT &= ~BV(RS);
+  ee:	dc 98       	cbi	0x1b, 4	; 27
+	}
+	
+	LCD_OUT &= ~BV(ENABLE);
+  f0:	de 98       	cbi	0x1b, 6	; 27
+}
+  f2:	08 95       	ret
+
+000000f4 <BV>:
+
+unsigned char BV(unsigned char commValue){
+  f4:	21 e0       	ldi	r18, 0x01	; 1
+  f6:	30 e0       	ldi	r19, 0x00	; 0
+  f8:	02 c0       	rjmp	.+4      	; 0xfe <BV+0xa>
+  fa:	22 0f       	add	r18, r18
+  fc:	33 1f       	adc	r19, r19
+  fe:	8a 95       	dec	r24
+ 100:	e2 f7       	brpl	.-8      	; 0xfa <BV+0x6>
+	unsigned char a;
+	a = 1 << commValue;
+	return a;
+}
+ 102:	82 2f       	mov	r24, r18
+ 104:	08 95       	ret
+
+00000106 <writeByteToLCD>:
+
+void writeByteToLCD(int selectedRegister, int byte) {
+ 106:	0f 93       	push	r16
+ 108:	1f 93       	push	r17
+ 10a:	cf 93       	push	r28
+ 10c:	df 93       	push	r29
+ 10e:	8c 01       	movw	r16, r24
+ 110:	eb 01       	movw	r28, r22
+	int upperNibble = byte >> 4;
+	int lowerNibble = byte & 0x0f;
+	
+	if(selectedRegister == DATA_REGISTER && position == 16) {
+ 112:	00 97       	sbiw	r24, 0x00	; 0
+ 114:	89 f5       	brne	.+98     	; 0x178 <writeByteToLCD+0x72>
+ 116:	80 91 96 01 	lds	r24, 0x0196
+ 11a:	90 91 97 01 	lds	r25, 0x0197
+ 11e:	40 97       	sbiw	r24, 0x10	; 16
+ 120:	99 f4       	brne	.+38     	; 0x148 <writeByteToLCD+0x42>
+		writeByteToLCD(COMMAND_REGISTER, 0xC0);
+ 122:	81 e0       	ldi	r24, 0x01	; 1
+ 124:	90 e0       	ldi	r25, 0x00	; 0
+ 126:	60 ec       	ldi	r22, 0xC0	; 192
+ 128:	70 e0       	ldi	r23, 0x00	; 0
+ 12a:	0e 94 83 00 	call	0x106	; 0x106 <writeByteToLCD>
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 12e:	84 ed       	ldi	r24, 0xD4	; 212
+ 130:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 132:	10 92 95 01 	sts	0x0195, r1
+ 136:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 13a:	80 91 94 01 	lds	r24, 0x0194
+ 13e:	90 91 95 01 	lds	r25, 0x0195
+ 142:	49 97       	sbiw	r24, 0x19	; 25
+ 144:	d1 f7       	brne	.-12     	; 0x13a <writeByteToLCD+0x34>
+ 146:	18 c0       	rjmp	.+48     	; 0x178 <writeByteToLCD+0x72>
+	int lowerNibble = byte & 0x0f;
+	
+	if(selectedRegister == DATA_REGISTER && position == 16) {
+		writeByteToLCD(COMMAND_REGISTER, 0xC0);
+		delay50us(25);
+	}else if(selectedRegister == DATA_REGISTER && position == 32) {
+ 148:	80 91 96 01 	lds	r24, 0x0196
+ 14c:	90 91 97 01 	lds	r25, 0x0197
+ 150:	80 97       	sbiw	r24, 0x20	; 32
+ 152:	91 f4       	brne	.+36     	; 0x178 <writeByteToLCD+0x72>
+		writeByteToLCD(COMMAND_REGISTER, 0x80);
+ 154:	81 e0       	ldi	r24, 0x01	; 1
+ 156:	90 e0       	ldi	r25, 0x00	; 0
+ 158:	60 e8       	ldi	r22, 0x80	; 128
+ 15a:	70 e0       	ldi	r23, 0x00	; 0
+ 15c:	0e 94 83 00 	call	0x106	; 0x106 <writeByteToLCD>
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 160:	84 ed       	ldi	r24, 0xD4	; 212
+ 162:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 164:	10 92 95 01 	sts	0x0195, r1
+ 168:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 16c:	80 91 94 01 	lds	r24, 0x0194
+ 170:	90 91 95 01 	lds	r25, 0x0195
+ 174:	49 97       	sbiw	r24, 0x19	; 25
+ 176:	d1 f7       	brne	.-12     	; 0x16c <writeByteToLCD+0x66>
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 178:	84 ed       	ldi	r24, 0xD4	; 212
+ 17a:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 17c:	10 92 95 01 	sts	0x0195, r1
+ 180:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 184:	80 91 94 01 	lds	r24, 0x0194
+ 188:	90 91 95 01 	lds	r25, 0x0195
+ 18c:	01 97       	sbiw	r24, 0x01	; 1
+ 18e:	d1 f7       	brne	.-12     	; 0x184 <writeByteToLCD+0x7e>
+	delay50us(250);
+	// **********************************************************
+}
+
+void writeNibbleToLCD(int selectedRegister, int nibble) {
+	LCD_OUT = BV(ENABLE);
+ 190:	80 e4       	ldi	r24, 0x40	; 64
+ 192:	8b bb       	out	0x1b, r24	; 27
+
+	LCD_OUT |= nibble;
+ 194:	2b b3       	in	r18, 0x1b	; 27
+ 196:	ce 01       	movw	r24, r28
+ 198:	34 e0       	ldi	r19, 0x04	; 4
+ 19a:	95 95       	asr	r25
+ 19c:	87 95       	ror	r24
+ 19e:	3a 95       	dec	r19
+ 1a0:	e1 f7       	brne	.-8      	; 0x19a <writeByteToLCD+0x94>
+ 1a2:	28 2b       	or	r18, r24
+ 1a4:	2b bb       	out	0x1b, r18	; 27
+
+	if(selectedRegister == DATA_REGISTER) {
+ 1a6:	01 15       	cp	r16, r1
+ 1a8:	11 05       	cpc	r17, r1
+ 1aa:	11 f4       	brne	.+4      	; 0x1b0 <writeByteToLCD+0xaa>
+		LCD_OUT |= BV(RS);
+ 1ac:	dc 9a       	sbi	0x1b, 4	; 27
+ 1ae:	01 c0       	rjmp	.+2      	; 0x1b2 <writeByteToLCD+0xac>
+	} else {
+		LCD_OUT &= ~BV(RS);
+ 1b0:	dc 98       	cbi	0x1b, 4	; 27
+	}
+	
+	LCD_OUT &= ~BV(ENABLE);
+ 1b2:	de 98       	cbi	0x1b, 6	; 27
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 1b4:	84 ed       	ldi	r24, 0xD4	; 212
+ 1b6:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 1b8:	10 92 95 01 	sts	0x0195, r1
+ 1bc:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 1c0:	80 91 94 01 	lds	r24, 0x0194
+ 1c4:	90 91 95 01 	lds	r25, 0x0195
+ 1c8:	01 97       	sbiw	r24, 0x01	; 1
+ 1ca:	d1 f7       	brne	.-12     	; 0x1c0 <writeByteToLCD+0xba>
+	delay50us(250);
+	// **********************************************************
+}
+
+void writeNibbleToLCD(int selectedRegister, int nibble) {
+	LCD_OUT = BV(ENABLE);
+ 1cc:	80 e4       	ldi	r24, 0x40	; 64
+ 1ce:	8b bb       	out	0x1b, r24	; 27
+
+	LCD_OUT |= nibble;
+ 1d0:	8b b3       	in	r24, 0x1b	; 27
+ 1d2:	cf 70       	andi	r28, 0x0F	; 15
+ 1d4:	d0 70       	andi	r29, 0x00	; 0
+ 1d6:	8c 2b       	or	r24, r28
+ 1d8:	8b bb       	out	0x1b, r24	; 27
+
+	if(selectedRegister == DATA_REGISTER) {
+ 1da:	01 15       	cp	r16, r1
+ 1dc:	11 05       	cpc	r17, r1
+ 1de:	11 f4       	brne	.+4      	; 0x1e4 <writeByteToLCD+0xde>
+		LCD_OUT |= BV(RS);
+ 1e0:	dc 9a       	sbi	0x1b, 4	; 27
+ 1e2:	01 c0       	rjmp	.+2      	; 0x1e6 <writeByteToLCD+0xe0>
+	} else {
+		LCD_OUT &= ~BV(RS);
+ 1e4:	dc 98       	cbi	0x1b, 4	; 27
+	}
+	
+	LCD_OUT &= ~BV(ENABLE);
+ 1e6:	de 98       	cbi	0x1b, 6	; 27
+	waitForLCD();
+	writeNibbleToLCD(selectedRegister, upperNibble);
+	waitForLCD();
+	writeNibbleToLCD(selectedRegister, lowerNibble);
+
+	if(selectedRegister == DATA_REGISTER && ++position == 33)	
+ 1e8:	01 2b       	or	r16, r17
+ 1ea:	a9 f4       	brne	.+42     	; 0x216 <writeByteToLCD+0x110>
+ 1ec:	80 91 96 01 	lds	r24, 0x0196
+ 1f0:	90 91 97 01 	lds	r25, 0x0197
+ 1f4:	01 96       	adiw	r24, 0x01	; 1
+ 1f6:	90 93 97 01 	sts	0x0197, r25
+ 1fa:	80 93 96 01 	sts	0x0196, r24
+ 1fe:	80 91 96 01 	lds	r24, 0x0196
+ 202:	90 91 97 01 	lds	r25, 0x0197
+ 206:	81 97       	sbiw	r24, 0x21	; 33
+ 208:	31 f4       	brne	.+12     	; 0x216 <writeByteToLCD+0x110>
+		position = 1;
+ 20a:	81 e0       	ldi	r24, 0x01	; 1
+ 20c:	90 e0       	ldi	r25, 0x00	; 0
+ 20e:	90 93 97 01 	sts	0x0197, r25
+ 212:	80 93 96 01 	sts	0x0196, r24
+}
+ 216:	df 91       	pop	r29
+ 218:	cf 91       	pop	r28
+ 21a:	1f 91       	pop	r17
+ 21c:	0f 91       	pop	r16
+ 21e:	08 95       	ret
+
+00000220 <initLCD>:
+void waitForLCD(){
+	delay50us(1);			//wait for lcd to write data;
+}
+
+void initLCD(){
+	position = 0;
+ 220:	10 92 97 01 	sts	0x0197, r1
+ 224:	10 92 96 01 	sts	0x0196, r1
+	LCD_DDR = 0x7F;
+ 228:	8f e7       	ldi	r24, 0x7F	; 127
+ 22a:	8a bb       	out	0x1a, r24	; 26
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 22c:	84 ed       	ldi	r24, 0xD4	; 212
+ 22e:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 230:	10 92 95 01 	sts	0x0195, r1
+ 234:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 238:	80 91 94 01 	lds	r24, 0x0194
+ 23c:	90 91 95 01 	lds	r25, 0x0195
+ 240:	8c 52       	subi	r24, 0x2C	; 44
+ 242:	91 40       	sbci	r25, 0x01	; 1
+ 244:	c9 f7       	brne	.-14     	; 0x238 <initLCD+0x18>
+	delay50us(250);
+	// **********************************************************
+}
+
+void writeNibbleToLCD(int selectedRegister, int nibble) {
+	LCD_OUT = BV(ENABLE);
+ 246:	80 e4       	ldi	r24, 0x40	; 64
+ 248:	8b bb       	out	0x1b, r24	; 27
+
+	LCD_OUT |= nibble;
+ 24a:	8b b3       	in	r24, 0x1b	; 27
+ 24c:	83 60       	ori	r24, 0x03	; 3
+ 24e:	8b bb       	out	0x1b, r24	; 27
+
+	if(selectedRegister == DATA_REGISTER) {
+		LCD_OUT |= BV(RS);
+	} else {
+		LCD_OUT &= ~BV(RS);
+ 250:	dc 98       	cbi	0x1b, 4	; 27
+	}
+	
+	LCD_OUT &= ~BV(ENABLE);
+ 252:	de 98       	cbi	0x1b, 6	; 27
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 254:	84 ed       	ldi	r24, 0xD4	; 212
+ 256:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 258:	10 92 95 01 	sts	0x0195, r1
+ 25c:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 260:	80 91 94 01 	lds	r24, 0x0194
+ 264:	90 91 95 01 	lds	r25, 0x0195
+ 268:	84 36       	cpi	r24, 0x64	; 100
+ 26a:	91 05       	cpc	r25, r1
+ 26c:	c9 f7       	brne	.-14     	; 0x260 <initLCD+0x40>
+	delay50us(250);
+	// **********************************************************
+}
+
+void writeNibbleToLCD(int selectedRegister, int nibble) {
+	LCD_OUT = BV(ENABLE);
+ 26e:	80 e4       	ldi	r24, 0x40	; 64
+ 270:	8b bb       	out	0x1b, r24	; 27
+
+	LCD_OUT |= nibble;
+ 272:	8b b3       	in	r24, 0x1b	; 27
+ 274:	83 60       	ori	r24, 0x03	; 3
+ 276:	8b bb       	out	0x1b, r24	; 27
+
+	if(selectedRegister == DATA_REGISTER) {
+		LCD_OUT |= BV(RS);
+	} else {
+		LCD_OUT &= ~BV(RS);
+ 278:	dc 98       	cbi	0x1b, 4	; 27
+	}
+	
+	LCD_OUT &= ~BV(ENABLE);
+ 27a:	de 98       	cbi	0x1b, 6	; 27
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 27c:	84 ed       	ldi	r24, 0xD4	; 212
+ 27e:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 280:	10 92 95 01 	sts	0x0195, r1
+ 284:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 288:	80 91 94 01 	lds	r24, 0x0194
+ 28c:	90 91 95 01 	lds	r25, 0x0195
+ 290:	84 36       	cpi	r24, 0x64	; 100
+ 292:	91 05       	cpc	r25, r1
+ 294:	c9 f7       	brne	.-14     	; 0x288 <initLCD+0x68>
+	delay50us(250);
+	// **********************************************************
+}
+
+void writeNibbleToLCD(int selectedRegister, int nibble) {
+	LCD_OUT = BV(ENABLE);
+ 296:	80 e4       	ldi	r24, 0x40	; 64
+ 298:	8b bb       	out	0x1b, r24	; 27
+
+	LCD_OUT |= nibble;
+ 29a:	8b b3       	in	r24, 0x1b	; 27
+ 29c:	83 60       	ori	r24, 0x03	; 3
+ 29e:	8b bb       	out	0x1b, r24	; 27
+
+	if(selectedRegister == DATA_REGISTER) {
+		LCD_OUT |= BV(RS);
+	} else {
+		LCD_OUT &= ~BV(RS);
+ 2a0:	dc 98       	cbi	0x1b, 4	; 27
+	}
+	
+	LCD_OUT &= ~BV(ENABLE);
+ 2a2:	de 98       	cbi	0x1b, 6	; 27
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 2a4:	84 ed       	ldi	r24, 0xD4	; 212
+ 2a6:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 2a8:	10 92 95 01 	sts	0x0195, r1
+ 2ac:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 2b0:	80 91 94 01 	lds	r24, 0x0194
+ 2b4:	90 91 95 01 	lds	r25, 0x0195
+ 2b8:	84 36       	cpi	r24, 0x64	; 100
+ 2ba:	91 05       	cpc	r25, r1
+ 2bc:	c9 f7       	brne	.-14     	; 0x2b0 <initLCD+0x90>
+	delay50us(250);
+	// **********************************************************
+}
+
+void writeNibbleToLCD(int selectedRegister, int nibble) {
+	LCD_OUT = BV(ENABLE);
+ 2be:	80 e4       	ldi	r24, 0x40	; 64
+ 2c0:	8b bb       	out	0x1b, r24	; 27
+
+	LCD_OUT |= nibble;
+ 2c2:	d9 9a       	sbi	0x1b, 1	; 27
+
+	if(selectedRegister == DATA_REGISTER) {
+		LCD_OUT |= BV(RS);
+	} else {
+		LCD_OUT &= ~BV(RS);
+ 2c4:	dc 98       	cbi	0x1b, 4	; 27
+	}
+	
+	LCD_OUT &= ~BV(ENABLE);
+ 2c6:	de 98       	cbi	0x1b, 6	; 27
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 2c8:	84 ed       	ldi	r24, 0xD4	; 212
+ 2ca:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 2cc:	10 92 95 01 	sts	0x0195, r1
+ 2d0:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 2d4:	80 91 94 01 	lds	r24, 0x0194
+ 2d8:	90 91 95 01 	lds	r25, 0x0195
+ 2dc:	84 36       	cpi	r24, 0x64	; 100
+ 2de:	91 05       	cpc	r25, r1
+ 2e0:	c9 f7       	brne	.-14     	; 0x2d4 <initLCD+0xb4>
+	delay50us(100);
+	writeNibbleToLCD(COMMAND_REGISTER, 0x02);
+	delay50us(100);
+	
+	// ************** Function set ******************************
+	writeByteToLCD(COMMAND_REGISTER, 0x28);
+ 2e2:	81 e0       	ldi	r24, 0x01	; 1
+ 2e4:	90 e0       	ldi	r25, 0x00	; 0
+ 2e6:	68 e2       	ldi	r22, 0x28	; 40
+ 2e8:	70 e0       	ldi	r23, 0x00	; 0
+ 2ea:	0e 94 83 00 	call	0x106	; 0x106 <writeByteToLCD>
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 2ee:	84 ed       	ldi	r24, 0xD4	; 212
+ 2f0:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 2f2:	10 92 95 01 	sts	0x0195, r1
+ 2f6:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 2fa:	80 91 94 01 	lds	r24, 0x0194
+ 2fe:	90 91 95 01 	lds	r25, 0x0195
+ 302:	8a 3f       	cpi	r24, 0xFA	; 250
+ 304:	91 05       	cpc	r25, r1
+ 306:	c9 f7       	brne	.-14     	; 0x2fa <initLCD+0xda>
+	writeByteToLCD(COMMAND_REGISTER, 0x28);
+	delay50us(250);
+	// **********************************************************
+
+	// ************* Turn display off ***************************
+	writeByteToLCD(COMMAND_REGISTER, 0x08);
+ 308:	81 e0       	ldi	r24, 0x01	; 1
+ 30a:	90 e0       	ldi	r25, 0x00	; 0
+ 30c:	68 e0       	ldi	r22, 0x08	; 8
+ 30e:	70 e0       	ldi	r23, 0x00	; 0
+ 310:	0e 94 83 00 	call	0x106	; 0x106 <writeByteToLCD>
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 314:	84 ed       	ldi	r24, 0xD4	; 212
+ 316:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 318:	10 92 95 01 	sts	0x0195, r1
+ 31c:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 320:	80 91 94 01 	lds	r24, 0x0194
+ 324:	90 91 95 01 	lds	r25, 0x0195
+ 328:	8a 3f       	cpi	r24, 0xFA	; 250
+ 32a:	91 05       	cpc	r25, r1
+ 32c:	c9 f7       	brne	.-14     	; 0x320 <initLCD+0x100>
+	writeByteToLCD(COMMAND_REGISTER, 0x08);
+	delay50us(250);
+	// **********************************************************
+	
+	// ************* Clear LCD and return home ******************
+	writeByteToLCD(COMMAND_REGISTER, 0x01);
+ 32e:	81 e0       	ldi	r24, 0x01	; 1
+ 330:	90 e0       	ldi	r25, 0x00	; 0
+ 332:	61 e0       	ldi	r22, 0x01	; 1
+ 334:	70 e0       	ldi	r23, 0x00	; 0
+ 336:	0e 94 83 00 	call	0x106	; 0x106 <writeByteToLCD>
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 33a:	84 ed       	ldi	r24, 0xD4	; 212
+ 33c:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 33e:	10 92 95 01 	sts	0x0195, r1
+ 342:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 346:	80 91 94 01 	lds	r24, 0x0194
+ 34a:	90 91 95 01 	lds	r25, 0x0195
+ 34e:	8a 3f       	cpi	r24, 0xFA	; 250
+ 350:	91 05       	cpc	r25, r1
+ 352:	c9 f7       	brne	.-14     	; 0x346 <initLCD+0x126>
+	writeByteToLCD(COMMAND_REGISTER, 0x01);
+	delay50us(250);
+	// **********************************************************
+	
+	// ************* Turn on display, turn on cursor and blink **
+	writeByteToLCD(COMMAND_REGISTER, 0x0E);
+ 354:	81 e0       	ldi	r24, 0x01	; 1
+ 356:	90 e0       	ldi	r25, 0x00	; 0
+ 358:	6e e0       	ldi	r22, 0x0E	; 14
+ 35a:	70 e0       	ldi	r23, 0x00	; 0
+ 35c:	0e 94 83 00 	call	0x106	; 0x106 <writeByteToLCD>
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 360:	84 ed       	ldi	r24, 0xD4	; 212
+ 362:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 364:	10 92 95 01 	sts	0x0195, r1
+ 368:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 36c:	80 91 94 01 	lds	r24, 0x0194
+ 370:	90 91 95 01 	lds	r25, 0x0195
+ 374:	8a 3f       	cpi	r24, 0xFA	; 250
+ 376:	91 05       	cpc	r25, r1
+ 378:	c9 f7       	brne	.-14     	; 0x36c <initLCD+0x14c>
+	
+	// ************* Turn on display, turn on cursor and blink **
+	writeByteToLCD(COMMAND_REGISTER, 0x0E);
+	delay50us(250);
+	// **********************************************************
+}
+ 37a:	08 95       	ret
+
+0000037c <clearLCD>:
+	if(selectedRegister == DATA_REGISTER && ++position == 33)	
+		position = 1;
+}
+
+void clearLCD(void) {
+	writeByteToLCD(COMMAND_REGISTER, 0x01);
+ 37c:	81 e0       	ldi	r24, 0x01	; 1
+ 37e:	90 e0       	ldi	r25, 0x00	; 0
+ 380:	61 e0       	ldi	r22, 0x01	; 1
+ 382:	70 e0       	ldi	r23, 0x00	; 0
+ 384:	0e 94 83 00 	call	0x106	; 0x106 <writeByteToLCD>
+	position = 0;
+ 388:	10 92 97 01 	sts	0x0197, r1
+ 38c:	10 92 96 01 	sts	0x0196, r1
+	sei();
+}
+
+void delay50us(unsigned int delayedTime){
+	//this exactly gives 50us delay for 8MHz systemClock
+	TCNT0 = 212;
+ 390:	84 ed       	ldi	r24, 0xD4	; 212
+ 392:	82 bf       	out	0x32, r24	; 50
+	timeCount = 0;
+ 394:	10 92 95 01 	sts	0x0195, r1
+ 398:	10 92 94 01 	sts	0x0194, r1
+	while(1){
+		if (timeCount == delayedTime) {
+ 39c:	80 91 94 01 	lds	r24, 0x0194
+ 3a0:	90 91 95 01 	lds	r25, 0x0195
+ 3a4:	8a 3f       	cpi	r24, 0xFA	; 250
+ 3a6:	91 05       	cpc	r25, r1
+ 3a8:	c9 f7       	brne	.-14     	; 0x39c <clearLCD+0x20>
+
+void clearLCD(void) {
+	writeByteToLCD(COMMAND_REGISTER, 0x01);
+	position = 0;
+	delay50us(250);
+}
+ 3aa:	08 95       	ret
+
+000003ac <writeStringToLCD>:
+
+void writeStringToLCD (char stringValue[]){
+ 3ac:	cf 93       	push	r28
+ 3ae:	df 93       	push	r29
+ 3b0:	ec 01       	movw	r28, r24
+ 3b2:	05 c0       	rjmp	.+10     	; 0x3be <writeStringToLCD+0x12>
+	int x=0;
+	while (stringValue[x] != '\0'){
+		writeByteToLCD (DATA_REGISTER, stringValue[x]);
+ 3b4:	80 e0       	ldi	r24, 0x00	; 0
+ 3b6:	90 e0       	ldi	r25, 0x00	; 0
+ 3b8:	70 e0       	ldi	r23, 0x00	; 0
+ 3ba:	0e 94 83 00 	call	0x106	; 0x106 <writeByteToLCD>
+	delay50us(250);
+}
+
+void writeStringToLCD (char stringValue[]){
+	int x=0;
+	while (stringValue[x] != '\0'){
+ 3be:	69 91       	ld	r22, Y+
+ 3c0:	66 23       	and	r22, r22
+ 3c2:	c1 f7       	brne	.-16     	; 0x3b4 <writeStringToLCD+0x8>
+		writeByteToLCD (DATA_REGISTER, stringValue[x]);
+		x++;
+	}
+}
+ 3c4:	df 91       	pop	r29
+ 3c6:	cf 91       	pop	r28
+ 3c8:	08 95       	ret
+
+000003ca <__vector_11>:
+
+ISR (TIMER0_OVF_vect){
+ 3ca:	1f 92       	push	r1
+ 3cc:	0f 92       	push	r0
+ 3ce:	0f b6       	in	r0, 0x3f	; 63
+ 3d0:	0f 92       	push	r0
+ 3d2:	11 24       	eor	r1, r1
+ 3d4:	8f 93       	push	r24
+ 3d6:	9f 93       	push	r25
+	TCNT0 = 212;
+ 3d8:	84 ed       	ldi	r24, 0xD4	; 212
+ 3da:	82 bf       	out	0x32, r24	; 50
+	++timeCount;
+ 3dc:	80 91 94 01 	lds	r24, 0x0194
+ 3e0:	90 91 95 01 	lds	r25, 0x0195
+ 3e4:	01 96       	adiw	r24, 0x01	; 1
+ 3e6:	90 93 95 01 	sts	0x0195, r25
+ 3ea:	80 93 94 01 	sts	0x0194, r24
+}
+ 3ee:	9f 91       	pop	r25
+ 3f0:	8f 91       	pop	r24
+ 3f2:	0f 90       	pop	r0
+ 3f4:	0f be       	out	0x3f, r0	; 63
+ 3f6:	0f 90       	pop	r0
+ 3f8:	1f 90       	pop	r1
+ 3fa:	18 95       	reti
+
+000003fc <USART_Init>:
+// *********************************************************************
+
+void USART_Init( unsigned char ubrr) {
+	UBRRH = 0;
+ 3fc:	10 bc       	out	0x20, r1	; 32
+	UBRRL = ubrr;
+ 3fe:	89 b9       	out	0x09, r24	; 9
+
+
+	UCSRB|= (1<<RXEN)|(1<<TXEN);
+ 400:	8a b1       	in	r24, 0x0a	; 10
+ 402:	88 61       	ori	r24, 0x18	; 24
+ 404:	8a b9       	out	0x0a, r24	; 10
+
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+ 406:	80 b5       	in	r24, 0x20	; 32
+ 408:	86 68       	ori	r24, 0x86	; 134
+ 40a:	80 bd       	out	0x20, r24	; 32
+}
+ 40c:	08 95       	ret
+
+0000040e <USART_Transmit>:
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 40e:	5d 9b       	sbis	0x0b, 5	; 11
+ 410:	fe cf       	rjmp	.-4      	; 0x40e <USART_Transmit>
+	UDR = data;
+ 412:	8c b9       	out	0x0c, r24	; 12
+
+}
+ 414:	08 95       	ret
+
+00000416 <USART_Transmit_String>:
+
+void USART_Transmit_String(char data[]){
+ 416:	dc 01       	movw	r26, r24
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 418:	28 ec       	ldi	r18, 0xC8	; 200
+ 41a:	30 e0       	ldi	r19, 0x00	; 0
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 41c:	8c 91       	ld	r24, X
+ 41e:	88 23       	and	r24, r24
+ 420:	61 f0       	breq	.+24     	; 0x43a <USART_Transmit_String+0x24>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 422:	5d 9b       	sbis	0x0b, 5	; 11
+ 424:	fe cf       	rjmp	.-4      	; 0x422 <USART_Transmit_String+0xc>
+	UDR = data;
+ 426:	8c b9       	out	0x0c, r24	; 12
+ 428:	84 ef       	ldi	r24, 0xF4	; 244
+ 42a:	91 e0       	ldi	r25, 0x01	; 1
+ 42c:	f9 01       	movw	r30, r18
+ 42e:	31 97       	sbiw	r30, 0x01	; 1
+ 430:	f1 f7       	brne	.-4      	; 0x42e <USART_Transmit_String+0x18>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 432:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 434:	d9 f7       	brne	.-10     	; 0x42c <USART_Transmit_String+0x16>
+ 436:	11 96       	adiw	r26, 0x01	; 1
+ 438:	f1 cf       	rjmp	.-30     	; 0x41c <USART_Transmit_String+0x6>
+ 43a:	08 95       	ret
+
+0000043c <USART_Receive>:
+	}
+}
+
+unsigned char USART_Receive( void ) {
+
+	while ( !(UCSRA & (1<<RXC)) );
+ 43c:	5f 9b       	sbis	0x0b, 7	; 11
+ 43e:	fe cf       	rjmp	.-4      	; 0x43c <USART_Receive>
+
+	return UDR;
+ 440:	8c b1       	in	r24, 0x0c	; 12
+}
+ 442:	08 95       	ret
+
+00000444 <stringCompare>:
+
+int stringCompare (char a[], char b[]) {
+ 444:	dc 01       	movw	r26, r24
+ 446:	20 e0       	ldi	r18, 0x00	; 0
+ 448:	30 e0       	ldi	r19, 0x00	; 0
+	int flag = 1;
+	int x;
+	x = 0;
+	do {
+		if (a[x] != b[x]) {
+ 44a:	fd 01       	movw	r30, r26
+ 44c:	e2 0f       	add	r30, r18
+ 44e:	f3 1f       	adc	r31, r19
+ 450:	40 81       	ld	r20, Z
+ 452:	fb 01       	movw	r30, r22
+ 454:	e2 0f       	add	r30, r18
+ 456:	f3 1f       	adc	r31, r19
+ 458:	80 81       	ld	r24, Z
+ 45a:	48 17       	cp	r20, r24
+ 45c:	41 f4       	brne	.+16     	; 0x46e <stringCompare+0x2a>
+			flag = 0;
+			break;
+		}
+		if (a[x] == '\0') {
+ 45e:	44 23       	and	r20, r20
+ 460:	19 f4       	brne	.+6      	; 0x468 <stringCompare+0x24>
+ 462:	21 e0       	ldi	r18, 0x01	; 1
+ 464:	30 e0       	ldi	r19, 0x00	; 0
+ 466:	05 c0       	rjmp	.+10     	; 0x472 <stringCompare+0x2e>
+			break;
+		}
+		x ++;
+ 468:	2f 5f       	subi	r18, 0xFF	; 255
+ 46a:	3f 4f       	sbci	r19, 0xFF	; 255
+ 46c:	ee cf       	rjmp	.-36     	; 0x44a <stringCompare+0x6>
+	} while (1);
+ 46e:	20 e0       	ldi	r18, 0x00	; 0
+ 470:	30 e0       	ldi	r19, 0x00	; 0
+	return flag;
+}
+ 472:	c9 01       	movw	r24, r18
+ 474:	08 95       	ret
+
+00000476 <main>:
+
+int main(){
+ 476:	4f 92       	push	r4
+ 478:	5f 92       	push	r5
+ 47a:	6f 92       	push	r6
+ 47c:	7f 92       	push	r7
+ 47e:	8f 92       	push	r8
+ 480:	9f 92       	push	r9
+ 482:	af 92       	push	r10
+ 484:	bf 92       	push	r11
+ 486:	cf 92       	push	r12
+ 488:	df 92       	push	r13
+ 48a:	ef 92       	push	r14
+ 48c:	ff 92       	push	r15
+ 48e:	0f 93       	push	r16
+ 490:	1f 93       	push	r17
+ 492:	df 93       	push	r29
+ 494:	cf 93       	push	r28
+ 496:	cd b7       	in	r28, 0x3d	; 61
+ 498:	de b7       	in	r29, 0x3e	; 62
+ 49a:	c4 56       	subi	r28, 0x64	; 100
+ 49c:	d0 40       	sbci	r29, 0x00	; 0
+ 49e:	0f b6       	in	r0, 0x3f	; 63
+ 4a0:	f8 94       	cli
+ 4a2:	de bf       	out	0x3e, r29	; 62
+ 4a4:	0f be       	out	0x3f, r0	; 63
+ 4a6:	cd bf       	out	0x3d, r28	; 61
+	char a[50], b[50];
+	int x;
+	char valPortB;
+
+	DDRB = 0xFF;
+ 4a8:	8f ef       	ldi	r24, 0xFF	; 255
+ 4aa:	87 bb       	out	0x17, r24	; 23
+	PORTB = 0x00;
+ 4ac:	18 ba       	out	0x18, r1	; 24
+	valPortB = 0x00;
+	DDRC = 0xFF;
+ 4ae:	84 bb       	out	0x14, r24	; 20
+void writeNibbleToLCD(int, int);
+unsigned char BV(unsigned char);
+void writeByteToLCD(int, int);
+
+void initDelay(){
+	TCCR0 = 0x02;
+ 4b0:	82 e0       	ldi	r24, 0x02	; 2
+ 4b2:	83 bf       	out	0x33, r24	; 51
+	TCNT0 = 212;
+ 4b4:	84 ed       	ldi	r24, 0xD4	; 212
+ 4b6:	82 bf       	out	0x32, r24	; 50
+	OCR0 = 0x00;
+ 4b8:	1c be       	out	0x3c, r1	; 60
+	TIMSK = 0x01;
+ 4ba:	81 e0       	ldi	r24, 0x01	; 1
+ 4bc:	89 bf       	out	0x39, r24	; 57
+
+	sei();
+ 4be:	78 94       	sei
+	PORTB = 0x00;
+	valPortB = 0x00;
+	DDRC = 0xFF;
+
+	initDelay();
+	initLCD();
+ 4c0:	0e 94 10 01 	call	0x220	; 0x220 <initLCD>
+	++timeCount;
+}
+// *********************************************************************
+
+void USART_Init( unsigned char ubrr) {
+	UBRRH = 0;
+ 4c4:	10 bc       	out	0x20, r1	; 32
+	UBRRL = ubrr;
+ 4c6:	83 e3       	ldi	r24, 0x33	; 51
+ 4c8:	89 b9       	out	0x09, r24	; 9
+
+
+	UCSRB|= (1<<RXEN)|(1<<TXEN);
+ 4ca:	8a b1       	in	r24, 0x0a	; 10
+ 4cc:	88 61       	ori	r24, 0x18	; 24
+ 4ce:	8a b9       	out	0x0a, r24	; 10
+
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+ 4d0:	80 b5       	in	r24, 0x20	; 32
+ 4d2:	86 68       	ori	r24, 0x86	; 134
+ 4d4:	80 bd       	out	0x20, r24	; 32
+
+	initDelay();
+	initLCD();
+	USART_Init (51);
+
+	writeStringToLCD("Home automation + speech recoz");
+ 4d6:	80 e6       	ldi	r24, 0x60	; 96
+ 4d8:	90 e0       	ldi	r25, 0x00	; 0
+ 4da:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+ 4de:	a0 e0       	ldi	r26, 0x00	; 0
+ 4e0:	b0 e0       	ldi	r27, 0x00	; 0
+	do {
+	
+		x = 0;
+		do {
+			a[x] = USART_Receive();
+ 4e2:	6e 01       	movw	r12, r28
+ 4e4:	08 94       	sec
+ 4e6:	c1 1c       	adc	r12, r1
+ 4e8:	d1 1c       	adc	r13, r1
+		
+			if (a[x-3]=='V' && a[x-2]=='E' && a[x-1]=='N' && a[x]=='D') {
+ 4ea:	7e ef       	ldi	r23, 0xFE	; 254
+ 4ec:	87 2e       	mov	r8, r23
+ 4ee:	7f ef       	ldi	r23, 0xFF	; 255
+ 4f0:	97 2e       	mov	r9, r23
+ 4f2:	8c 0e       	add	r8, r28
+ 4f4:	9d 1e       	adc	r9, r29
+ 4f6:	3e 01       	movw	r6, r28
+ 4f8:	08 94       	sec
+ 4fa:	61 08       	sbc	r6, r1
+ 4fc:	71 08       	sbc	r7, r1
+				break;
+			}	
+
+			x += 1;
+		} while(1);
+		a[x-4] = '\0';
+ 4fe:	6d ef       	ldi	r22, 0xFD	; 253
+ 500:	46 2e       	mov	r4, r22
+ 502:	6f ef       	ldi	r22, 0xFF	; 255
+ 504:	56 2e       	mov	r5, r22
+ 506:	4c 0e       	add	r4, r28
+ 508:	5d 1e       	adc	r5, r29
+ 50a:	53 e3       	ldi	r21, 0x33	; 51
+ 50c:	e5 2e       	mov	r14, r21
+ 50e:	f1 2c       	mov	r15, r1
+ 510:	ec 0e       	add	r14, r28
+ 512:	fd 1e       	adc	r15, r29
+			} else {
+				break;
+			}
+			x ++;
+		} while (1);
+		b[x-2] = '\0';
+ 514:	41 e3       	ldi	r20, 0x31	; 49
+ 516:	a4 2e       	mov	r10, r20
+ 518:	b1 2c       	mov	r11, r1
+ 51a:	ac 0e       	add	r10, r28
+ 51c:	bd 1e       	adc	r11, r29
+ 51e:	08 ec       	ldi	r16, 0xC8	; 200
+ 520:	10 e0       	ldi	r17, 0x00	; 0
+	}
+}
+
+unsigned char USART_Receive( void ) {
+
+	while ( !(UCSRA & (1<<RXC)) );
+ 522:	5f 9b       	sbis	0x0b, 7	; 11
+ 524:	fe cf       	rjmp	.-4      	; 0x522 <main+0xac>
+
+	return UDR;
+ 526:	9c b1       	in	r25, 0x0c	; 12
+	writeStringToLCD("Home automation + speech recoz");
+	do {
+	
+		x = 0;
+		do {
+			a[x] = USART_Receive();
+ 528:	f6 01       	movw	r30, r12
+ 52a:	ea 0f       	add	r30, r26
+ 52c:	fb 1f       	adc	r31, r27
+ 52e:	90 83       	st	Z, r25
+		
+			if (a[x-3]=='V' && a[x-2]=='E' && a[x-1]=='N' && a[x]=='D') {
+ 530:	f4 01       	movw	r30, r8
+ 532:	ea 0f       	add	r30, r26
+ 534:	fb 1f       	adc	r31, r27
+ 536:	80 81       	ld	r24, Z
+ 538:	86 35       	cpi	r24, 0x56	; 86
+ 53a:	71 f4       	brne	.+28     	; 0x558 <main+0xe2>
+ 53c:	f3 01       	movw	r30, r6
+ 53e:	ea 0f       	add	r30, r26
+ 540:	fb 1f       	adc	r31, r27
+ 542:	80 81       	ld	r24, Z
+ 544:	85 34       	cpi	r24, 0x45	; 69
+ 546:	41 f4       	brne	.+16     	; 0x558 <main+0xe2>
+ 548:	fe 01       	movw	r30, r28
+ 54a:	ea 0f       	add	r30, r26
+ 54c:	fb 1f       	adc	r31, r27
+ 54e:	80 81       	ld	r24, Z
+ 550:	8e 34       	cpi	r24, 0x4E	; 78
+ 552:	11 f4       	brne	.+4      	; 0x558 <main+0xe2>
+ 554:	94 34       	cpi	r25, 0x44	; 68
+ 556:	11 f0       	breq	.+4      	; 0x55c <main+0xe6>
+				break;
+			}	
+
+			x += 1;
+ 558:	11 96       	adiw	r26, 0x01	; 1
+ 55a:	e3 cf       	rjmp	.-58     	; 0x522 <main+0xac>
+		} while(1);
+		a[x-4] = '\0';
+ 55c:	a4 0d       	add	r26, r4
+ 55e:	b5 1d       	adc	r27, r5
+ 560:	1c 92       	st	X, r1
+ 562:	c7 01       	movw	r24, r14
+ 564:	a2 e0       	ldi	r26, 0x02	; 2
+ 566:	b0 e0       	ldi	r27, 0x00	; 0
+
+		x = 2;
+		do {
+			if (a[x] != '\0') {
+ 568:	f6 01       	movw	r30, r12
+ 56a:	ea 0f       	add	r30, r26
+ 56c:	fb 1f       	adc	r31, r27
+ 56e:	20 81       	ld	r18, Z
+ 570:	22 23       	and	r18, r18
+ 572:	29 f0       	breq	.+10     	; 0x57e <main+0x108>
+				b[x-2] = a[x];
+ 574:	fc 01       	movw	r30, r24
+ 576:	21 93       	st	Z+, r18
+ 578:	cf 01       	movw	r24, r30
+			} else {
+				break;
+			}
+			x ++;
+ 57a:	11 96       	adiw	r26, 0x01	; 1
+ 57c:	f5 cf       	rjmp	.-22     	; 0x568 <main+0xf2>
+		} while (1);
+		b[x-2] = '\0';
+ 57e:	aa 0d       	add	r26, r10
+ 580:	bb 1d       	adc	r27, r11
+ 582:	1c 92       	st	X, r1
+
+
+		clearLCD();
+ 584:	0e 94 be 01 	call	0x37c	; 0x37c <clearLCD>
+ 588:	97 01       	movw	r18, r14
+ 58a:	af e7       	ldi	r26, 0x7F	; 127
+ 58c:	b0 e0       	ldi	r27, 0x00	; 0
+ 58e:	f7 01       	movw	r30, r14
+int stringCompare (char a[], char b[]) {
+	int flag = 1;
+	int x;
+	x = 0;
+	do {
+		if (a[x] != b[x]) {
+ 590:	90 81       	ld	r25, Z
+ 592:	8c 91       	ld	r24, X
+ 594:	98 17       	cp	r25, r24
+ 596:	d9 f4       	brne	.+54     	; 0x5ce <main+0x158>
+ 598:	31 96       	adiw	r30, 0x01	; 1
+ 59a:	11 96       	adiw	r26, 0x01	; 1
+			flag = 0;
+			break;
+		}
+		if (a[x] == '\0') {
+ 59c:	99 23       	and	r25, r25
+ 59e:	c1 f7       	brne	.-16     	; 0x590 <main+0x11a>
+ 5a0:	16 c1       	rjmp	.+556    	; 0x7ce <main+0x358>
+ 5a2:	11 96       	adiw	r26, 0x01	; 1
+
+}
+
+void USART_Transmit_String(char data[]){
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 5a4:	8c 91       	ld	r24, X
+ 5a6:	88 23       	and	r24, r24
+ 5a8:	59 f0       	breq	.+22     	; 0x5c0 <main+0x14a>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 5aa:	5d 9b       	sbis	0x0b, 5	; 11
+ 5ac:	fe cf       	rjmp	.-4      	; 0x5aa <main+0x134>
+	UDR = data;
+ 5ae:	8c b9       	out	0x0c, r24	; 12
+ 5b0:	84 ef       	ldi	r24, 0xF4	; 244
+ 5b2:	91 e0       	ldi	r25, 0x01	; 1
+ 5b4:	f8 01       	movw	r30, r16
+ 5b6:	31 97       	sbiw	r30, 0x01	; 1
+ 5b8:	f1 f7       	brne	.-4      	; 0x5b6 <main+0x140>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 5ba:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 5bc:	d9 f7       	brne	.-10     	; 0x5b4 <main+0x13e>
+ 5be:	f1 cf       	rjmp	.-30     	; 0x5a2 <main+0x12c>
+		clearLCD();
+		if (stringCompare (b, "deviceoneon")){
+			valPortB |= 0x01;
+			PORTB |= 0x01;
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+ 5c0:	8b e8       	ldi	r24, 0x8B	; 139
+ 5c2:	90 e0       	ldi	r25, 0x00	; 0
+ 5c4:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+			writeStringToLCD ("Device One ONed");
+ 5c8:	8c e9       	ldi	r24, 0x9C	; 156
+ 5ca:	90 e0       	ldi	r25, 0x00	; 0
+ 5cc:	fb c0       	rjmp	.+502    	; 0x7c4 <main+0x34e>
+ 5ce:	ac ea       	ldi	r26, 0xAC	; 172
+ 5d0:	b0 e0       	ldi	r27, 0x00	; 0
+ 5d2:	f7 01       	movw	r30, r14
+int stringCompare (char a[], char b[]) {
+	int flag = 1;
+	int x;
+	x = 0;
+	do {
+		if (a[x] != b[x]) {
+ 5d4:	90 81       	ld	r25, Z
+ 5d6:	8c 91       	ld	r24, X
+ 5d8:	98 17       	cp	r25, r24
+ 5da:	d9 f4       	brne	.+54     	; 0x612 <main+0x19c>
+ 5dc:	31 96       	adiw	r30, 0x01	; 1
+ 5de:	11 96       	adiw	r26, 0x01	; 1
+			flag = 0;
+			break;
+		}
+		if (a[x] == '\0') {
+ 5e0:	99 23       	and	r25, r25
+ 5e2:	c1 f7       	brne	.-16     	; 0x5d4 <main+0x15e>
+ 5e4:	f8 c0       	rjmp	.+496    	; 0x7d6 <main+0x360>
+ 5e6:	11 96       	adiw	r26, 0x01	; 1
+
+}
+
+void USART_Transmit_String(char data[]){
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 5e8:	8c 91       	ld	r24, X
+ 5ea:	88 23       	and	r24, r24
+ 5ec:	59 f0       	breq	.+22     	; 0x604 <main+0x18e>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 5ee:	5d 9b       	sbis	0x0b, 5	; 11
+ 5f0:	fe cf       	rjmp	.-4      	; 0x5ee <main+0x178>
+	UDR = data;
+ 5f2:	8c b9       	out	0x0c, r24	; 12
+ 5f4:	84 ef       	ldi	r24, 0xF4	; 244
+ 5f6:	91 e0       	ldi	r25, 0x01	; 1
+ 5f8:	f8 01       	movw	r30, r16
+ 5fa:	31 97       	sbiw	r30, 0x01	; 1
+ 5fc:	f1 f7       	brne	.-4      	; 0x5fa <main+0x184>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 5fe:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 600:	d9 f7       	brne	.-10     	; 0x5f8 <main+0x182>
+ 602:	f1 cf       	rjmp	.-30     	; 0x5e6 <main+0x170>
+			writeStringToLCD ("Device One ONed");
+		} else if (stringCompare (b, "deviceoneoff")) {
+			valPortB &= 0xFE;
+			PORTB &= 0xFE;
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+ 604:	8b e8       	ldi	r24, 0x8B	; 139
+ 606:	90 e0       	ldi	r25, 0x00	; 0
+ 608:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+			writeStringToLCD ("Device One OFFed");	
+ 60c:	89 eb       	ldi	r24, 0xB9	; 185
+ 60e:	90 e0       	ldi	r25, 0x00	; 0
+ 610:	d9 c0       	rjmp	.+434    	; 0x7c4 <main+0x34e>
+ 612:	aa ec       	ldi	r26, 0xCA	; 202
+ 614:	b0 e0       	ldi	r27, 0x00	; 0
+ 616:	f7 01       	movw	r30, r14
+int stringCompare (char a[], char b[]) {
+	int flag = 1;
+	int x;
+	x = 0;
+	do {
+		if (a[x] != b[x]) {
+ 618:	90 81       	ld	r25, Z
+ 61a:	8c 91       	ld	r24, X
+ 61c:	98 17       	cp	r25, r24
+ 61e:	d9 f4       	brne	.+54     	; 0x656 <main+0x1e0>
+ 620:	31 96       	adiw	r30, 0x01	; 1
+ 622:	11 96       	adiw	r26, 0x01	; 1
+			flag = 0;
+			break;
+		}
+		if (a[x] == '\0') {
+ 624:	99 23       	and	r25, r25
+ 626:	c1 f7       	brne	.-16     	; 0x618 <main+0x1a2>
+ 628:	da c0       	rjmp	.+436    	; 0x7de <main+0x368>
+ 62a:	11 96       	adiw	r26, 0x01	; 1
+
+}
+
+void USART_Transmit_String(char data[]){
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 62c:	8c 91       	ld	r24, X
+ 62e:	88 23       	and	r24, r24
+ 630:	59 f0       	breq	.+22     	; 0x648 <main+0x1d2>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 632:	5d 9b       	sbis	0x0b, 5	; 11
+ 634:	fe cf       	rjmp	.-4      	; 0x632 <main+0x1bc>
+	UDR = data;
+ 636:	8c b9       	out	0x0c, r24	; 12
+ 638:	84 ef       	ldi	r24, 0xF4	; 244
+ 63a:	91 e0       	ldi	r25, 0x01	; 1
+ 63c:	f8 01       	movw	r30, r16
+ 63e:	31 97       	sbiw	r30, 0x01	; 1
+ 640:	f1 f7       	brne	.-4      	; 0x63e <main+0x1c8>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 642:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 644:	d9 f7       	brne	.-10     	; 0x63c <main+0x1c6>
+ 646:	f1 cf       	rjmp	.-30     	; 0x62a <main+0x1b4>
+			writeStringToLCD ("Device One OFFed");	
+		} else if (stringCompare (b, "devicetwoon")) {
+			valPortB |= 0x02;
+			PORTB |= 0x02;
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+ 648:	8b e8       	ldi	r24, 0x8B	; 139
+ 64a:	90 e0       	ldi	r25, 0x00	; 0
+ 64c:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+			writeStringToLCD ("Device Two ONed");
+ 650:	86 ed       	ldi	r24, 0xD6	; 214
+ 652:	90 e0       	ldi	r25, 0x00	; 0
+ 654:	b7 c0       	rjmp	.+366    	; 0x7c4 <main+0x34e>
+ 656:	a6 ee       	ldi	r26, 0xE6	; 230
+ 658:	b0 e0       	ldi	r27, 0x00	; 0
+ 65a:	f7 01       	movw	r30, r14
+int stringCompare (char a[], char b[]) {
+	int flag = 1;
+	int x;
+	x = 0;
+	do {
+		if (a[x] != b[x]) {
+ 65c:	90 81       	ld	r25, Z
+ 65e:	8c 91       	ld	r24, X
+ 660:	98 17       	cp	r25, r24
+ 662:	d9 f4       	brne	.+54     	; 0x69a <main+0x224>
+ 664:	31 96       	adiw	r30, 0x01	; 1
+ 666:	11 96       	adiw	r26, 0x01	; 1
+			flag = 0;
+			break;
+		}
+		if (a[x] == '\0') {
+ 668:	99 23       	and	r25, r25
+ 66a:	c1 f7       	brne	.-16     	; 0x65c <main+0x1e6>
+ 66c:	bc c0       	rjmp	.+376    	; 0x7e6 <main+0x370>
+ 66e:	11 96       	adiw	r26, 0x01	; 1
+
+}
+
+void USART_Transmit_String(char data[]){
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 670:	8c 91       	ld	r24, X
+ 672:	88 23       	and	r24, r24
+ 674:	59 f0       	breq	.+22     	; 0x68c <main+0x216>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 676:	5d 9b       	sbis	0x0b, 5	; 11
+ 678:	fe cf       	rjmp	.-4      	; 0x676 <main+0x200>
+	UDR = data;
+ 67a:	8c b9       	out	0x0c, r24	; 12
+ 67c:	84 ef       	ldi	r24, 0xF4	; 244
+ 67e:	91 e0       	ldi	r25, 0x01	; 1
+ 680:	f8 01       	movw	r30, r16
+ 682:	31 97       	sbiw	r30, 0x01	; 1
+ 684:	f1 f7       	brne	.-4      	; 0x682 <main+0x20c>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 686:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 688:	d9 f7       	brne	.-10     	; 0x680 <main+0x20a>
+ 68a:	f1 cf       	rjmp	.-30     	; 0x66e <main+0x1f8>
+			writeStringToLCD ("Device Two ONed");
+		} else if (stringCompare (b, "devicetwooff")) {
+			valPortB &= 0xFD;
+			PORTB &= 0xFD;
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+ 68c:	8b e8       	ldi	r24, 0x8B	; 139
+ 68e:	90 e0       	ldi	r25, 0x00	; 0
+ 690:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+			writeStringToLCD ("Device Two OFFed");
+ 694:	83 ef       	ldi	r24, 0xF3	; 243
+ 696:	90 e0       	ldi	r25, 0x00	; 0
+ 698:	95 c0       	rjmp	.+298    	; 0x7c4 <main+0x34e>
+ 69a:	a4 e0       	ldi	r26, 0x04	; 4
+ 69c:	b1 e0       	ldi	r27, 0x01	; 1
+ 69e:	f7 01       	movw	r30, r14
+int stringCompare (char a[], char b[]) {
+	int flag = 1;
+	int x;
+	x = 0;
+	do {
+		if (a[x] != b[x]) {
+ 6a0:	90 81       	ld	r25, Z
+ 6a2:	8c 91       	ld	r24, X
+ 6a4:	98 17       	cp	r25, r24
+ 6a6:	d9 f4       	brne	.+54     	; 0x6de <main+0x268>
+ 6a8:	31 96       	adiw	r30, 0x01	; 1
+ 6aa:	11 96       	adiw	r26, 0x01	; 1
+			flag = 0;
+			break;
+		}
+		if (a[x] == '\0') {
+ 6ac:	99 23       	and	r25, r25
+ 6ae:	c1 f7       	brne	.-16     	; 0x6a0 <main+0x22a>
+ 6b0:	9e c0       	rjmp	.+316    	; 0x7ee <main+0x378>
+ 6b2:	11 96       	adiw	r26, 0x01	; 1
+
+}
+
+void USART_Transmit_String(char data[]){
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 6b4:	8c 91       	ld	r24, X
+ 6b6:	88 23       	and	r24, r24
+ 6b8:	59 f0       	breq	.+22     	; 0x6d0 <main+0x25a>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 6ba:	5d 9b       	sbis	0x0b, 5	; 11
+ 6bc:	fe cf       	rjmp	.-4      	; 0x6ba <main+0x244>
+	UDR = data;
+ 6be:	8c b9       	out	0x0c, r24	; 12
+ 6c0:	84 ef       	ldi	r24, 0xF4	; 244
+ 6c2:	91 e0       	ldi	r25, 0x01	; 1
+ 6c4:	f8 01       	movw	r30, r16
+ 6c6:	31 97       	sbiw	r30, 0x01	; 1
+ 6c8:	f1 f7       	brne	.-4      	; 0x6c6 <main+0x250>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 6ca:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 6cc:	d9 f7       	brne	.-10     	; 0x6c4 <main+0x24e>
+ 6ce:	f1 cf       	rjmp	.-30     	; 0x6b2 <main+0x23c>
+			writeStringToLCD ("Device Two OFFed");
+		} else if (stringCompare (b, "devicethreeon")) {
+			valPortB |= 0x04;
+			PORTB |= 0x04;
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+ 6d0:	8b e8       	ldi	r24, 0x8B	; 139
+ 6d2:	90 e0       	ldi	r25, 0x00	; 0
+ 6d4:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+			writeStringToLCD ("Device Three ON");
+ 6d8:	82 e1       	ldi	r24, 0x12	; 18
+ 6da:	91 e0       	ldi	r25, 0x01	; 1
+ 6dc:	73 c0       	rjmp	.+230    	; 0x7c4 <main+0x34e>
+ 6de:	a2 e2       	ldi	r26, 0x22	; 34
+ 6e0:	b1 e0       	ldi	r27, 0x01	; 1
+ 6e2:	f7 01       	movw	r30, r14
+int stringCompare (char a[], char b[]) {
+	int flag = 1;
+	int x;
+	x = 0;
+	do {
+		if (a[x] != b[x]) {
+ 6e4:	90 81       	ld	r25, Z
+ 6e6:	8c 91       	ld	r24, X
+ 6e8:	98 17       	cp	r25, r24
+ 6ea:	d9 f4       	brne	.+54     	; 0x722 <main+0x2ac>
+ 6ec:	31 96       	adiw	r30, 0x01	; 1
+ 6ee:	11 96       	adiw	r26, 0x01	; 1
+			flag = 0;
+			break;
+		}
+		if (a[x] == '\0') {
+ 6f0:	99 23       	and	r25, r25
+ 6f2:	c1 f7       	brne	.-16     	; 0x6e4 <main+0x26e>
+ 6f4:	80 c0       	rjmp	.+256    	; 0x7f6 <main+0x380>
+ 6f6:	11 96       	adiw	r26, 0x01	; 1
+
+}
+
+void USART_Transmit_String(char data[]){
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 6f8:	8c 91       	ld	r24, X
+ 6fa:	88 23       	and	r24, r24
+ 6fc:	59 f0       	breq	.+22     	; 0x714 <main+0x29e>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 6fe:	5d 9b       	sbis	0x0b, 5	; 11
+ 700:	fe cf       	rjmp	.-4      	; 0x6fe <main+0x288>
+	UDR = data;
+ 702:	8c b9       	out	0x0c, r24	; 12
+ 704:	84 ef       	ldi	r24, 0xF4	; 244
+ 706:	91 e0       	ldi	r25, 0x01	; 1
+ 708:	f8 01       	movw	r30, r16
+ 70a:	31 97       	sbiw	r30, 0x01	; 1
+ 70c:	f1 f7       	brne	.-4      	; 0x70a <main+0x294>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 70e:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 710:	d9 f7       	brne	.-10     	; 0x708 <main+0x292>
+ 712:	f1 cf       	rjmp	.-30     	; 0x6f6 <main+0x280>
+			writeStringToLCD ("Device Three ON");
+		} else if (stringCompare (b, "devicethreeoff")) {
+			valPortB &= 0xFB;
+			PORTB &= 0xFB;
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+ 714:	8b e8       	ldi	r24, 0x8B	; 139
+ 716:	90 e0       	ldi	r25, 0x00	; 0
+ 718:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+			writeStringToLCD ("Device Three OFF");
+ 71c:	81 e3       	ldi	r24, 0x31	; 49
+ 71e:	91 e0       	ldi	r25, 0x01	; 1
+ 720:	51 c0       	rjmp	.+162    	; 0x7c4 <main+0x34e>
+ 722:	e2 e4       	ldi	r30, 0x42	; 66
+ 724:	f1 e0       	ldi	r31, 0x01	; 1
+int stringCompare (char a[], char b[]) {
+	int flag = 1;
+	int x;
+	x = 0;
+	do {
+		if (a[x] != b[x]) {
+ 726:	d9 01       	movw	r26, r18
+ 728:	9c 91       	ld	r25, X
+ 72a:	80 81       	ld	r24, Z
+ 72c:	98 17       	cp	r25, r24
+ 72e:	31 f4       	brne	.+12     	; 0x73c <main+0x2c6>
+ 730:	2f 5f       	subi	r18, 0xFF	; 255
+ 732:	3f 4f       	sbci	r19, 0xFF	; 255
+ 734:	31 96       	adiw	r30, 0x01	; 1
+			flag = 0;
+			break;
+		}
+		if (a[x] == '\0') {
+ 736:	99 23       	and	r25, r25
+ 738:	b1 f7       	brne	.-20     	; 0x726 <main+0x2b0>
+ 73a:	61 c0       	rjmp	.+194    	; 0x7fe <main+0x388>
+			USART_Transmit (PORTB + 0x30);
+			_delay_ms(5);
+			USART_Transmit_String("_VEND");
+			writeStringToLCD ("successful");
+		} else {
+			writeStringToLCD ("status:         ");
+ 73c:	8b e8       	ldi	r24, 0x8B	; 139
+ 73e:	90 e0       	ldi	r25, 0x00	; 0
+ 740:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+ 744:	a0 e5       	ldi	r26, 0x50	; 80
+ 746:	b1 e0       	ldi	r27, 0x01	; 1
+ 748:	2d c0       	rjmp	.+90     	; 0x7a4 <main+0x32e>
+ 74a:	11 96       	adiw	r26, 0x01	; 1
+
+}
+
+void USART_Transmit_String(char data[]){
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 74c:	8c 91       	ld	r24, X
+ 74e:	88 23       	and	r24, r24
+ 750:	59 f0       	breq	.+22     	; 0x768 <main+0x2f2>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 752:	5d 9b       	sbis	0x0b, 5	; 11
+ 754:	fe cf       	rjmp	.-4      	; 0x752 <main+0x2dc>
+	UDR = data;
+ 756:	8c b9       	out	0x0c, r24	; 12
+ 758:	84 ef       	ldi	r24, 0xF4	; 244
+ 75a:	91 e0       	ldi	r25, 0x01	; 1
+ 75c:	f8 01       	movw	r30, r16
+ 75e:	31 97       	sbiw	r30, 0x01	; 1
+ 760:	f1 f7       	brne	.-4      	; 0x75e <main+0x2e8>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 762:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 764:	d9 f7       	brne	.-10     	; 0x75c <main+0x2e6>
+ 766:	f1 cf       	rjmp	.-30     	; 0x74a <main+0x2d4>
+			writeStringToLCD ("status:         ");
+			writeStringToLCD ("Device Three OFF");
+		} else if (stringCompare (b, "statusdevices")) {
+			writeStringToLCD ("status:         ");
+			USART_Transmit_String ("U_");
+			USART_Transmit (PORTB + 0x30);
+ 768:	88 b3       	in	r24, 0x18	; 24
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 76a:	5d 9b       	sbis	0x0b, 5	; 11
+ 76c:	fe cf       	rjmp	.-4      	; 0x76a <main+0x2f4>
+			writeStringToLCD ("status:         ");
+			writeStringToLCD ("Device Three OFF");
+		} else if (stringCompare (b, "statusdevices")) {
+			writeStringToLCD ("status:         ");
+			USART_Transmit_String ("U_");
+			USART_Transmit (PORTB + 0x30);
+ 76e:	80 5d       	subi	r24, 0xD0	; 208
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+	UDR = data;
+ 770:	8c b9       	out	0x0c, r24	; 12
+ 772:	80 e1       	ldi	r24, 0x10	; 16
+ 774:	97 e2       	ldi	r25, 0x27	; 39
+ 776:	01 97       	sbiw	r24, 0x01	; 1
+ 778:	f1 f7       	brne	.-4      	; 0x776 <main+0x300>
+ 77a:	a1 e6       	ldi	r26, 0x61	; 97
+ 77c:	b1 e0       	ldi	r27, 0x01	; 1
+
+}
+
+void USART_Transmit_String(char data[]){
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 77e:	8c 91       	ld	r24, X
+ 780:	88 23       	and	r24, r24
+ 782:	61 f0       	breq	.+24     	; 0x79c <main+0x326>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 784:	5d 9b       	sbis	0x0b, 5	; 11
+ 786:	fe cf       	rjmp	.-4      	; 0x784 <main+0x30e>
+	UDR = data;
+ 788:	8c b9       	out	0x0c, r24	; 12
+ 78a:	84 ef       	ldi	r24, 0xF4	; 244
+ 78c:	91 e0       	ldi	r25, 0x01	; 1
+ 78e:	f8 01       	movw	r30, r16
+ 790:	31 97       	sbiw	r30, 0x01	; 1
+ 792:	f1 f7       	brne	.-4      	; 0x790 <main+0x31a>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 794:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 796:	d9 f7       	brne	.-10     	; 0x78e <main+0x318>
+ 798:	11 96       	adiw	r26, 0x01	; 1
+ 79a:	f1 cf       	rjmp	.-30     	; 0x77e <main+0x308>
+			writeStringToLCD ("status:         ");
+			USART_Transmit_String ("U_");
+			USART_Transmit (PORTB + 0x30);
+			_delay_ms(5);
+			USART_Transmit_String("_VEND");
+			writeStringToLCD ("successful");
+ 79c:	87 e6       	ldi	r24, 0x67	; 103
+ 79e:	91 e0       	ldi	r25, 0x01	; 1
+ 7a0:	11 c0       	rjmp	.+34     	; 0x7c4 <main+0x34e>
+ 7a2:	11 96       	adiw	r26, 0x01	; 1
+
+}
+
+void USART_Transmit_String(char data[]){
+	for (int x=0; ; ){
+		if (data[x] != '\0') {
+ 7a4:	8c 91       	ld	r24, X
+ 7a6:	88 23       	and	r24, r24
+ 7a8:	59 f0       	breq	.+22     	; 0x7c0 <main+0x34a>
+	UCSRC |= (1 << URSEL)|(3<<UCSZ0);
+}
+
+void USART_Transmit( unsigned char data ) {
+
+	while ( !( UCSRA & (1<<UDRE)) );
+ 7aa:	5d 9b       	sbis	0x0b, 5	; 11
+ 7ac:	fe cf       	rjmp	.-4      	; 0x7aa <main+0x334>
+	UDR = data;
+ 7ae:	8c b9       	out	0x0c, r24	; 12
+ 7b0:	84 ef       	ldi	r24, 0xF4	; 244
+ 7b2:	91 e0       	ldi	r25, 0x01	; 1
+ 7b4:	f8 01       	movw	r30, r16
+ 7b6:	31 97       	sbiw	r30, 0x01	; 1
+ 7b8:	f1 f7       	brne	.-4      	; 0x7b6 <main+0x340>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 7ba:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 7bc:	d9 f7       	brne	.-10     	; 0x7b4 <main+0x33e>
+ 7be:	f1 cf       	rjmp	.-30     	; 0x7a2 <main+0x32c>
+			USART_Transmit_String("_VEND");
+			writeStringToLCD ("successful");
+		} else {
+			writeStringToLCD ("status:         ");
+			USART_Transmit_String("U_setCANCEL_VEND");
+			writeStringToLCD ("unrecognized key");
+ 7c0:	82 e7       	ldi	r24, 0x72	; 114
+ 7c2:	91 e0       	ldi	r25, 0x01	; 1
+ 7c4:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+ 7c8:	a0 e0       	ldi	r26, 0x00	; 0
+ 7ca:	b0 e0       	ldi	r27, 0x00	; 0
+ 7cc:	aa ce       	rjmp	.-684    	; 0x522 <main+0xac>
+
+
+		clearLCD();
+		if (stringCompare (b, "deviceoneon")){
+			valPortB |= 0x01;
+			PORTB |= 0x01;
+ 7ce:	c0 9a       	sbi	0x18, 0	; 24
+ 7d0:	a3 e8       	ldi	r26, 0x83	; 131
+ 7d2:	b1 e0       	ldi	r27, 0x01	; 1
+ 7d4:	e7 ce       	rjmp	.-562    	; 0x5a4 <main+0x12e>
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+			writeStringToLCD ("Device One ONed");
+		} else if (stringCompare (b, "deviceoneoff")) {
+			valPortB &= 0xFE;
+			PORTB &= 0xFE;
+ 7d6:	c0 98       	cbi	0x18, 0	; 24
+ 7d8:	a3 e8       	ldi	r26, 0x83	; 131
+ 7da:	b1 e0       	ldi	r27, 0x01	; 1
+ 7dc:	05 cf       	rjmp	.-502    	; 0x5e8 <main+0x172>
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+			writeStringToLCD ("Device One OFFed");	
+		} else if (stringCompare (b, "devicetwoon")) {
+			valPortB |= 0x02;
+			PORTB |= 0x02;
+ 7de:	c1 9a       	sbi	0x18, 1	; 24
+ 7e0:	a3 e8       	ldi	r26, 0x83	; 131
+ 7e2:	b1 e0       	ldi	r27, 0x01	; 1
+ 7e4:	23 cf       	rjmp	.-442    	; 0x62c <main+0x1b6>
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+			writeStringToLCD ("Device Two ONed");
+		} else if (stringCompare (b, "devicetwooff")) {
+			valPortB &= 0xFD;
+			PORTB &= 0xFD;
+ 7e6:	c1 98       	cbi	0x18, 1	; 24
+ 7e8:	a3 e8       	ldi	r26, 0x83	; 131
+ 7ea:	b1 e0       	ldi	r27, 0x01	; 1
+ 7ec:	41 cf       	rjmp	.-382    	; 0x670 <main+0x1fa>
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+			writeStringToLCD ("Device Two OFFed");
+		} else if (stringCompare (b, "devicethreeon")) {
+			valPortB |= 0x04;
+			PORTB |= 0x04;
+ 7ee:	c2 9a       	sbi	0x18, 2	; 24
+ 7f0:	a3 e8       	ldi	r26, 0x83	; 131
+ 7f2:	b1 e0       	ldi	r27, 0x01	; 1
+ 7f4:	5f cf       	rjmp	.-322    	; 0x6b4 <main+0x23e>
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+			writeStringToLCD ("Device Three ON");
+		} else if (stringCompare (b, "devicethreeoff")) {
+			valPortB &= 0xFB;
+			PORTB &= 0xFB;
+ 7f6:	c2 98       	cbi	0x18, 2	; 24
+ 7f8:	a3 e8       	ldi	r26, 0x83	; 131
+ 7fa:	b1 e0       	ldi	r27, 0x01	; 1
+ 7fc:	7d cf       	rjmp	.-262    	; 0x6f8 <main+0x282>
+			USART_Transmit_String("U_setOK_VEND");
+			writeStringToLCD ("status:         ");
+			writeStringToLCD ("Device Three OFF");
+		} else if (stringCompare (b, "statusdevices")) {
+			writeStringToLCD ("status:         ");
+ 7fe:	8b e8       	ldi	r24, 0x8B	; 139
+ 800:	90 e0       	ldi	r25, 0x00	; 0
+ 802:	0e 94 d6 01 	call	0x3ac	; 0x3ac <writeStringToLCD>
+ 806:	a0 e9       	ldi	r26, 0x90	; 144
+ 808:	b1 e0       	ldi	r27, 0x01	; 1
+ 80a:	a0 cf       	rjmp	.-192    	; 0x74c <main+0x2d6>
+
+0000080c <_exit>:
+ 80c:	f8 94       	cli
+
+0000080e <__stop_program>:
+ 80e:	ff cf       	rjmp	.-2      	; 0x80e <__stop_program>
